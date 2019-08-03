@@ -13,11 +13,23 @@ class Institution:
 
     def update_themes(self):
         for var in articles:
-            i_found = var['Funding'].find(self.name)
-            if(i_found != -1 or len(var['Funding']) > 0 ):
-                aux_themes = var['Fields of Study']
-                themes_list = aux_themes.split(";")
-                for theme in themes_list:
-                    self.themes.append(theme)
-                    print(theme)
+            inst = var['Funding']
+            inst_list = inst.split(";")
+            for x in inst_list:
+                if(len(x) > 1):
+                    if(x is self.name):
+                        aux_themes = var['Fields of Study']
+                        themes_list = aux_themes.split(";")
+                        for theme in themes_list:
+                            self.themes.append(theme)
+                            print(theme)
+            
+            #if(i_found != -1 or len(var['Funding']) > 0 ):
+                #aux_themes = var['Fields of Study']
+                #themes_list = aux_themes.split(";")
+                #for theme in themes_list:
+                    #self.themes.append(theme)
+                    #print(theme)
+
+                    #len(self.name) > 0 and x is self.name
 

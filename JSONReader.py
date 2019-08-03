@@ -23,12 +23,12 @@ list_institutions = []
 def create_institutions():
         for var in articles:
                 insts_name = var['Funding']
-                aux_list = insts_name.split(";")
+                aux_list = insts_name.split("; ")
 
                 for inst_name in aux_list:
                         new_inst = Institution(inst_name)
                         list_institutions.append(new_inst)
-                        print("\n", inst_name, "\n")
+                        print((inst_name).encode('utf-8'))
                         new_inst.update_themes()
 
 
