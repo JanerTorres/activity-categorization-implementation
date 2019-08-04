@@ -2,6 +2,7 @@ import json
 from Author import Author
 from Institution import Institution
 
+
 with open("university_of_antioquia.json", encoding="utf-8") as dataUdeA:
     articles = json.loads(dataUdeA.read())
 
@@ -10,6 +11,7 @@ con base a esta información"""
 
 authors = []
 institutions = []
+field_of_study = []
 authors_existence = []
 institutions_existence = []
 
@@ -65,19 +67,45 @@ for i in articles:
             if _article not in authors[pos].articles:
                 authors[pos].articles += _article
 
+    for field in _fields:
+        if (not field == "") and (field not in field_of_study):
+            field_of_study += [field]
 
 
-found_authors = []
+for field in field_of_study:
+    print(field)
 
-for institution in institutions:
-    c = "universidad"
-    c = c.lower()
-    if institution.institution.lower().__contains__(c):
-        found_authors += [institution.institution]
-print(found_authors)
+def institution_search():
 
-for pos in range(len(found_authors)):
-    print(pos, "- ", found_authors[pos])
+    search = ""
+    found_institutions = []
+    while search == "":
+        search = input('Introduzca Institución a Buscar: ')
+    search = search.lower()
+    for institution in institutions:
+        if institution.institution.lower().__contains__(search):
+            found_institutions += [institution]
 
-algo = input("Eres gay?")
-print(algo)
+    for pos in range(len(found_institutions)):
+        print(pos, "- ", found_institutions[pos].institution)
+
+    option = ""
+    while option == "":
+        print()
+        option = input("Ingrese el Número de una Institución para ver su Información: ")
+        try:
+            option = int(option)
+            if int(option) < 0 or int(option) >= len(found_institutions):
+                option = ""
+                print("Opción Invalida")
+        except:
+            print("Opción Invalida")
+            option = ""
+
+    print()
+    print("Nombre: ", found_institutions[option].institution)
+    print("Autores: ", found_institutions[option].author)
+    print("Temas: ", found_institutions[option].fields)
+    print("Articulos: ", found_institutions[option].articles)
+
+
