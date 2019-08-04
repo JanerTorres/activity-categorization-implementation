@@ -5,8 +5,8 @@
 
 class Author:
 
-    def __init__(self, author):
+    def __init__(self, author, institutions, fields, article):
         self.author = author
-        self.institution = []
-        self.themes = []
-        self.articles = None
+        self.institutions = institutions
+        self.fields = fields
+        self.articles = [article]
