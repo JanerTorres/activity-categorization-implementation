@@ -11,7 +11,7 @@ con base a esta información"""
 
 authors = []
 institutions = []
-field_of_study = []
+fields_of_study = []
 authors_existence = []
 institutions_existence = []
 
@@ -68,15 +68,11 @@ for i in articles:
                 authors[pos].articles += _article
 
     for field in _fields:
-        if (not field == "") and (field not in field_of_study):
-            field_of_study += [field]
+        if (not field == "") and (field not in fields_of_study):
+            fields_of_study += [field]
 
-
-for field in field_of_study:
-    print(field)
 
 def institution_search():
-
     search = ""
     found_institutions = []
     while search == "":
@@ -92,7 +88,7 @@ def institution_search():
     option = ""
     while option == "":
         print()
-        option = input("Ingrese el Número de una Institución para ver su Información: ")
+        option = input("Ingrese el número de una Institución para ver su información: ")
         try:
             option = int(option)
             if int(option) < 0 or int(option) >= len(found_institutions):
@@ -109,3 +105,41 @@ def institution_search():
     print("Articulos: ", found_institutions[option].articles)
 
 
+def field_search():
+    search = ""
+    found_fields = []
+    while search == "":
+        search = input('Introduzca Tema a buscar: ')
+    search = search.lower()
+    for field in fields_of_study:
+        if field.lower().__contains__(search):
+            found_fields += [field]
+
+    for pos in range(len(found_fields)):
+        print(pos, "- ", found_fields[pos])
+
+    option = ""
+    while option == "":
+        print()
+        option = input("Ingrese el número de un Tema para buscar Instituciones relevantes: ")
+        try:
+            option = int(option)
+            if int(option) < 0 or int(option) >= len(found_fields):
+                option = ""
+                print("Opción Invalida")
+        except:
+            print("Opción Invalida")
+            option = ""
+
+    option = found_fields[option]
+    found_institutions = []
+    for institution in institutions:
+        if option in institution.fields:
+            found_institutions += [institution]
+
+    print()
+    print("Instituciones con relación al Tema: ")
+    for institution in found_institutions:
+        print(institution.institution)
+
+field_search()
