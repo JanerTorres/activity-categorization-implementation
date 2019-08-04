@@ -1,6 +1,5 @@
 
 
-# La clase Article recibe único parametro que será un artículo del json
 
 class Article:
 
