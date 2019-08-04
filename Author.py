@@ -1,6 +1,10 @@
 
 
-# La clase Author recibe el nombre del autor como parametro único, debe ser un dato de tipo String
+"""La clase Author recibe como parámetros:
+ - author que es el nombre del autor
+ - institution que es una lista de las instituciones
+ - fields que es una lista de los campos de estudio
+ - article que es el artículo en cual se encuentra relacionado el autor"""
 
 
 class Author:
